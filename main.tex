@@ -1,0 +1,40 @@
+\documentclass[aspectratio=169]{beamer}
+
+\input{packages.tex}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1ex,right]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}%
+      \usebeamertemplate*{page number in head/foot}%
+      \hspace*{2ex}
+    \end{beamercolorbox}%
+  }%
+}
+
+\title{RLlib: Industry-Grade, Scalable Reinforcement Learning}
+\author{
+  Maxime Alaarabiou\\
+  % Supervisor: Laurent Vercouter\\
+  % Co-Supervisor: Nicolas Delestre\\
+}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\input{frames/evolution_classic_reinforcement_learning.tex}
+\input{frames/evolution_deep_reinforcement_learning.tex}
+
+
+\bibliographystyle{apalike}
+\bibliography{
+  references/classic_reinforcement_learning,
+  references/deep_reinforcement_learning,
+}
+
+\end{document}

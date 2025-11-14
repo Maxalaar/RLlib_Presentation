@@ -1,0 +1,82 @@
+\begin{figure}
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[
+        timeline/.style={draw, thick, -{Stealth[length=3mm]}, line cap=round},
+        connect/.style={thick, dashed}
+    ]
+
+    %=== Timeline scale parameters ===%
+    \def\yearmin{2013}
+    \def\yearmax{2025}
+    \def\scalefactor{2} % cm per year
+
+    % Main line
+    \draw[timeline] (0,0) -- ({(\yearmax-\yearmin)*\scalefactor},0);
+
+    %=== Macro to place events ===%
+    % #1 = year
+    % #2 = citation (bib key)
+    % #3 = text
+    % #4 = bubble width (text width)
+    % #5 = minimum height of the bubble
+    % #6 = Y offset
+    % #7 = text size (e.g., \small)
+    % #8 = bubble color (e.g., blue!10, red!15, green!20)
+    \newcommand{\event}[8]{
+        % Event position
+        \pgfmathsetmacro{\x}{(#1-\yearmin)*\scalefactor}
+        \pgfmathsetmacro{\y}{#6}
+
+        % Connection line behind bubbles
+        \begin{scope}[on background layer]
+            \draw[connect] (\x,0) -- ++(0,\y);
+        \end{scope}
+
+        % Bubble in the foreground
+        \node[
+            draw,
+            rounded corners,
+            very thick,
+            fill=#8,
+            minimum height=#5,
+            text width=#4,
+            align=center,
+            font=#7
+        ] (E#1) at (\x, \y) {\textbf{\cite{#2}} \\[2pt] #3};
+    }
+
+    %=== Events ===%
+    \event{2013}{mnih2013playing}{
+    \textit{Deep Q-Network} for playing \textbf{Atari} directly from pixels.}{5cm}{1cm}{0.05cm}{\small}{blue!10};
+
+    \event{2015}{lillicrap2019continuouscontroldeepreinforcement}{
+    \textit{Deep Deterministic Policy Gradient} for continuous action spaces.}{5cm}{1cm}{-0.05cm}{\small}{red!10};
+
+    \event{2017}{schulman2017proximal}{
+    \textit{Proximal Policy Optimization} for stable training across all action spaces.}{5cm}{1cm}{0.05cm}{\small}{green!10};
+
+    \event{2017}{silver2017masteringchessshogiselfplay}{
+    Emergence of \textit{AlphaZero} self-learning mastery in \textbf{Chess}, \textbf{Go}, and \textbf{Shogi}.}{5.5cm}{1cm}{0.125cm}{\small}{purple!10};
+
+    \event{2019}{berner2019dota}{
+    \textit{OpenAI Five} defeats semi-professional teams in \textbf{Dota 2}.}{5.5cm}{1cm}{-0.05cm}{\small}{orange!10};
+
+    \event{2019}{vinyals2019grandmaster}{
+    \textit{AlphaStar} achieves grandmaster-level performance in \textbf{StarCraft II}.}{5.5cm}{1cm}{-0.125cm}{\small}{cyan!10};
+
+    \event{2020}{Schrittwieser_2020}{
+    \textit{MuZero} a generalization of model-based learning, discovering environment rules autonomously.}{5.5cm}{1cm}{0.05cm}{\small}{teal!10};
+
+    \event{2022}{ouyang2022training}{
+    \textit{Reinforcement Learning with Human Feedback} for \textbf{Large Language Models}.}{5.5cm}{1cm}{-0.05cm}{\small}{yellow!15};
+
+    \event{2022}{fawzi2022discovering}{
+    \textit{AlphaTensor} uses RL to discover optimized \textbf{Matrix Multiplication} algorithms.}{5.5cm}{1cm}{-0.125cm}{\small}{violet!10};
+
+    \event{2024}{shao2024deepseekmathpushinglimitsmathematical}{
+    \textit{DeepSeekMath} a model specialized in \textbf{Mathematics}, pushing the limits of symbolic and numerical reasoning.}{5.5cm}{1cm}{0.05cm}{\small}{cyan!10};
+
+    \end{tikzpicture}
+    }
+\end{figure}

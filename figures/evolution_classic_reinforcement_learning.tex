@@ -1,0 +1,67 @@
+\begin{figure}
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[
+        timeline/.style={draw, thick, -{Stealth[length=3mm]}, line cap=round},
+        connect/.style={thick, dashed}
+    ]
+
+    %=== Timeline scale parameters ===%
+    \def\yearmin{1966}
+    \def\yearmax{2000}
+    \def\scalefactor{0.75} % cm per year, to fit everything
+
+    % Main timeline
+    \draw[timeline] (0,0) -- ({(\yearmax-\yearmin)*\scalefactor},0);
+
+    %=== Event Macro ===%
+    \newcommand{\event}[8]{
+        \pgfmathsetmacro{\x}{(#1-\yearmin)*\scalefactor}
+        \pgfmathsetmacro{\y}{#6}
+
+        \begin{scope}[on background layer]
+            \draw[connect] (\x,0) -- ++(0,\y);
+        \end{scope}
+
+        \node[
+            draw,
+            rounded corners,
+            very thick,
+            fill=#8,
+            minimum height=#5,
+            text width=#4,
+            align=center,
+            font=#7
+        ] at (\x, \y) {\textbf{\cite{#2}} \\[2pt] #3};
+    }
+
+    %=== EVENTS ===%
+
+    \event{1966}{bellman1966dynamic}{
+    Formalization of the \textbf{Bellman Equation}, providing the mathematical foundations.}{5.5cm}{1cm}{0.05cm}{\small}{blue!10};
+
+    \event{1978}{puterman1978modified}{
+        Formalization of \textbf{Markov Decision Processes}, establishing a standardized framework.}{5.5cm}{1cm}{0.05cm}{\small}{cyan!10};
+
+    \event{1988}{sutton1988learning}{
+        Introduction of \textbf{Temporal-Difference Learning}, balancing the bias--variance trade-off.}{5.5cm}{1cm}{-0.05cm}{\small}{red!10};
+
+    \event{1992}{watkins1992q}{
+        Creation of the \textbf{Q-Learning} algorithm, stable and value-based method.}{5.5cm}{1cm}{0.125cm}{\small}{green!10};
+
+    \event{1992}{williams1992simple}{
+        Introduction of \textbf{REINFORCE}, the first policy-gradient update rule.}{5.5cm}{1cm}{0.2cm}{\small}{purple!10};
+
+    \event{1998}{kaelbling1998planning}{
+        \textbf{Partially Observable MDP} enabling RL to be applied to a wider class of problems.}{5.5cm}{1cm}{-0.05cm}{\small}{orange!10};
+
+    \event{1998}{sutton2018reinforcement}{
+        Publication of the reference Reinforcement Learning book.}{5.5cm}{1cm}{0.05cm}{\small}{yellow!15};
+
+    \event{1999}{sutton1999policy}{
+        Introducing the mathematical formulation of \textbf{Policy Gradient} methods.}{5.5cm}{1cm}{-0.125cm}{\small}{cyan!10};
+
+
+    \end{tikzpicture}
+    }
+\end{figure}
