@@ -1,0 +1,28 @@
+\begin{figure}
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}
+        \sethlcolor{myred}
+        % Nodes
+        \node[draw, circle, align=center] (policy) at (-5, 0) {\textcolor{myred}{\textbf{Policy}}};
+        \node[draw, circle, align=center] (environment) at (0, 0) {\large \textcolor{myred}{\textbf{Environment}}};
+    
+        % Arrows with labels
+        \draw[->, bend left=20] (policy) to node[above, font=\small, align=center] (action) {Action} (environment);
+        \draw[->, bend left=20] (environment) to node[below, font=\small, align=center] (observation) {Observation} (policy);
+
+        % Agent
+        \node[draw, rectangle, fit=(policy)(action)(observation), inner sep=0.1cm, dashed, rounded corners=0.3cm] (agent_box) {};
+        \node[] (agent_label) at ($(agent_box.north) + (0, 0.3cm)$) {Agent};
+
+        % RL Algorithm
+        \node[draw, rectangle, fit=(agent_box)(agent_label), inner sep=0.1cm, rounded corners=0.3cm] (rl_algorithm_box) {};
+        \node[] (rl_algorithm_label) at ($(rl_algorithm_box.north) + (0, 0.3cm)$) {\textcolor{myred}{\textbf{RL Algorithm}}};
+        
+        % Reward
+        \coordinate (top_environment) at ($(environment.north) + (0, 0.2cm)$);
+        \coordinate (point_rl_algorithm_box) at (rl_algorithm_box.east |- top_environment);
+        \draw[->] (environment.north) -- (top_environment) -- node[above, font=\small] {Reward} (point_rl_algorithm_box);
+    \end{tikzpicture}
+    }
+\end{figure}

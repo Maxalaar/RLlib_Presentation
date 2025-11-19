@@ -1,0 +1,21 @@
+\begin{frame}
+\centering
+\begin{tabular}{>{\ttfamily}l l}
+\toprule
+\textbf{Option} & \textbf{Value} \\
+\midrule
+rollout\_fragment\_length & 2048 \\
+train\_batch\_size & 2048 * 8 \\
+minibatch\_size & 2048 \\
+lambda\_gae & 0.95 \\
+kullback\_leibler\_coefficient & 0.5 \\
+clip\_policy\_parameter & 0.1 \\
+clip\_value\_function\_parameter & 10 \\
+entropy\_coefficient & 0.01 \\
+number\_epochs & 10 \\
+learning\_rate & 0.00015 \\
+gradient\_clip & 100.0 \\
+gradient\_clip\_by & 'global\_norm' \\
+\bottomrule
+\end{tabular}
+\end{frame}

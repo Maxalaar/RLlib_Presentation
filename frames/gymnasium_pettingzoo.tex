@@ -1,0 +1,32 @@
+\begin{frame}[fragile]{}
+\centering
+\textbf{Gymnasium:}
+
+{\scriptsize
+\begin{lstlisting}[language=Python]
+import gymnasium as gym
+
+env = gym.make("ALE/SpaceInvaders-v5", render_mode="rgb_array")
+obs, info = env.reset()
+action = env.action_space.sample()
+obs, reward, terminated, truncated, info = env.step(action)
+\end{lstlisting}
+}
+
+\vspace{0.4cm}
+\textbf{PettingZoo:}
+
+{\scriptsize
+\begin{lstlisting}[language=Python]
+from pettingzoo.atari import space_invaders_v2
+
+env = space_invaders_v2.env(render_mode="rgb_array")
+env.reset()
+for agent in env.agent_iter():
+    obs, reward, term, trunc, info = env.last()
+    action = env.action_space(agent).sample() if not term else None
+    env.step(action)
+\end{lstlisting}
+}
+
+\end{frame}

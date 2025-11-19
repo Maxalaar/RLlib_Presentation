@@ -1,0 +1,15 @@
+\begin{frame}
+\centering
+\begin{tabular}{>{\ttfamily}l l}
+\toprule
+\textbf{Option} & \textbf{Value} \\
+\midrule
+architecture & CnnPPO \\
+configuration\_cnn & [(16, 4, 2), (32, 4, 2), (64, 4, 2), (128, 4, 2)] \\
+configuration\_hidden\_layers & [512, 256, 128] \\
+activation\_function\_class & LeakyReLU \\
+use\_layer\_normalization\_cnn & True \\
+use\_share\_cnn & True \\
+\bottomrule
+\end{tabular}
+\end{frame}
