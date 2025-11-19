@@ -16,10 +16,8 @@ config.rl_module(
 )
 
 algo = config.build()
-for _ in range(5):
-    pprint(algo.train())
-
-pprint(algo.evaluate())
+print(algo.train())
+print(algo.evaluate())
 algo.stop()
 \end{lstlisting}
 }
