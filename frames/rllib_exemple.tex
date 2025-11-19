@@ -3,24 +3,23 @@
 
 {\scriptsize
 \begin{lstlisting}[language=Python]
-from ray.rllib.algorithms.ppo import PPOConfig
-from pprint import pprint
-
-# Configure the algorithm.
-config = (
-    PPOConfig()
-    .environment("ALE/SpaceInvaders-v5")
+config = PPOConfig()
+config.environment("SpaceInvaders")
+config.rl_module(
+    model_config={
+        "conv_filters": [
+            [32, [8, 8], 4],
+            [64, [4, 4], 2],
+            [64, [3, 3], 1]
+        ],
+    }
 )
 
-# Build the algorithm.
-algo = config.build_algo()
-# Train it for 5 iterations ...
+algo = config.build()
 for _ in range(5):
     pprint(algo.train())
-# ... and evaluate it.
 
 pprint(algo.evaluate())
-# Release the algo's resources.
 algo.stop()
 \end{lstlisting}
 }
